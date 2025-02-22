@@ -1,11 +1,7 @@
-import logo from './logo.svg';
-import './App.css';
-
+import MainLayout from "./layouts/MainLayout";
 function App() {
   return (
-    <div className="App">
-      <div className='  bg-red-500  h-12 w-full'></div>
-    </div>
+    <MainLayout  />
   );
 }
 
