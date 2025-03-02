@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import DOMPurify from 'dompurify';
 
 const RecipeCard = ({ 
   title, 
@@ -9,6 +10,10 @@ const RecipeCard = ({
   imageUrl, 
   onClick 
 }) => {
+  const createMarkup = (html) => {
+    return { __html: DOMPurify.sanitize(html) };
+  };
+
   return (
     <div 
       className="bg-[#191919] rounded-lg overflow-hidden cursor-pointer hover:bg-[#252525] transition-colors duration-200"
@@ -20,7 +25,10 @@ const RecipeCard = ({
       />
       <div className="p-4">
         <h3 className="text-xl mb-2 text-white">{title}</h3>
-        <p className="text-gray-400 mb-2 line-clamp-2">{description}</p>
+        <p 
+          className="text-gray-400 mb-2 line-clamp-2"
+          dangerouslySetInnerHTML={createMarkup(description)}
+        />
         <div className="flex items-center text-sm text-gray-400">
           {rating && (
             <>
